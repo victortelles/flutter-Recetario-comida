@@ -1,16 +1,18 @@
-//Aqui se mostrara la lista de comidas, pero utilizando el widget de meal_item
-//Al picarle algun producto,te abrira otra ventana para mostrar el detalle de ese producto.
+import 'package:flutter/material.dart';
 
-class MealsScreen extends StatefulWidget {
+class MealsScreen extends StatelessWidget {
   const MealsScreen({super.key});
 
   @override
-  State<MealsScreen> createState() => _MealsScreenState();
-}
-
-class _MealsScreenState extends State<MealsScreen> {
-  @override
   Widget build(BuildContext context) {
-    return Container();
+    return Center(
+      child: Text(
+        'No hay favoritos aún.',
+        style: TextStyle(
+          fontSize: 24,
+          color: Colors.amber
+          ),
+      ),
+    );
   }
 }
