@@ -18,33 +18,36 @@ class CategoryGridItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //Contenedor principal
-    return Container(
-      //Espaciado
-      padding: const EdgeInsets.all(15),
-      decoration: BoxDecoration(
-        //Degradado al contenedor
-        gradient: LinearGradient(
-          colors: [
-            category.color.withOpacity(0.6),
-            category.color.withOpacity(0.9)
-          ],
-          //Inicia / finaliza (Arriba izq - Abajo Der.)
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight
+    return GestureDetector(
+      onTap: onSelectCategory,
+      child: Container(
+        //Espaciado
+        padding: const EdgeInsets.all(15),
+        decoration: BoxDecoration(
+          //Degradado al contenedor
+          gradient: LinearGradient(
+            colors: [
+              category.color.withOpacity(0.6),
+              category.color.withOpacity(0.9)
+            ],
+            //Inicia / finaliza (Arriba izq - Abajo Der.)
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight
+          ),
+      
+          //Color y bordeado
+          color: category.color,
+          borderRadius: BorderRadius.circular(15),
         ),
-
-        //Color y bordeado
-        color: category.color,
-        borderRadius: BorderRadius.circular(15),
-      ),
-
-      //Titulo
-      alignment: Alignment.topLeft,
-      child: Text(
-        category.title,
-        style: Theme.of(context)
-          .textTheme.titleLarge
-          ?.copyWith(color: Colors.white),
+      
+        //Titulo
+        alignment: Alignment.topLeft,
+        child: Text(
+          category.title,
+          style: Theme.of(context)
+            .textTheme.titleLarge
+            ?.copyWith(color: Colors.white),
+        ),
       ),
     );
   }

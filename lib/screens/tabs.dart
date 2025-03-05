@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tarea_10_recetario/screens/categories.dart';
-//import 'package:tarea_10_recetario/screens/meals.dart';
+import 'package:tarea_10_recetario/screens/meals.dart';
 //import 'package:tarea_10_recetario/widgets/main_drawer.dart';
 
 class TabsScreen extends StatefulWidget {
@@ -16,7 +16,7 @@ class _TabsScreenState extends State<TabsScreen> {
 
   final List<Map<String, dynamic>> _pages = [
     {'page': const CategoriesScreen(), 'title': 'Categories'},
-    //{'page': const MealsScreen(), 'title': 'Your Favorites'},
+    {'page': const MealsScreen(), 'title': 'Your Favorites'},
   ];
 
   void _selectPage(int index) {
@@ -38,11 +38,13 @@ class _TabsScreenState extends State<TabsScreen> {
         onTap: _selectPage,
         currentIndex: _selectedPageIndex,
         items: const [
+
           //Opc1: Categorias
           BottomNavigationBarItem(
             icon: Icon(Icons.set_meal),
             label: 'Categories',
           ),
+
           //Opc2: Favoritos
           BottomNavigationBarItem(
             icon: Icon(Icons.star),
