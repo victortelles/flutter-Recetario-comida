@@ -11,6 +11,7 @@ class TabsScreen extends StatefulWidget {
 }
 
 class _TabsScreenState extends State<TabsScreen> {
+  //Indice inicial pagina
   int _selectedPageIndex = 0;
 
   final List<Map<String, dynamic>> _pages = [
@@ -39,7 +40,7 @@ class _TabsScreenState extends State<TabsScreen> {
         items: const [
           //Opc1: Categorias
           BottomNavigationBarItem(
-            icon: Icon(Icons.category),
+            icon: Icon(Icons.set_meal),
             label: 'Categories',
           ),
           //Opc2: Favoritos
