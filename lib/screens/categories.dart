@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:tarea_10_recetario/models/meal.dart';
 import 'package:tarea_10_recetario/screens/meals.dart';
 import 'package:tarea_10_recetario/widgets/category_grid_item.dart';
-import 'package:tarea_10_recetario/models/category.dart';
 import 'package:tarea_10_recetario/data/dummy_data.dart';
 
 class CategoriesScreen extends StatelessWidget {

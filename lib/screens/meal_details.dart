@@ -36,6 +36,7 @@ class _MealDetailsScreenState extends State<MealDetailsScreen> {
             //Funcionalidad
             onPressed: () {
               widget.onToggleFavorite(widget.meal);
+              setState(() {});  //Refrescar la pantalla / Cambiar el estado
             },
           ),
         ],
@@ -70,7 +71,7 @@ class _MealDetailsScreenState extends State<MealDetailsScreen> {
                       .map((ingredient) => Text(
                         ingredient,
                         style: const TextStyle(color: Colors.white),
-                      )).toList(),
+                      )),
 
                   //Espaciado
                   const SizedBox(height: 10),
@@ -89,7 +90,7 @@ class _MealDetailsScreenState extends State<MealDetailsScreen> {
                   ...widget.meal.steps.map((step) => Text(
                     step,
                     style: const TextStyle(color:Colors.white),
-                  )).toList(),
+                  )),
                 ],
               ),
             ),
