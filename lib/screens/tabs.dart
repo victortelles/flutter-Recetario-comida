@@ -18,6 +18,18 @@ class _TabsScreenState extends State<TabsScreen> {
   //Lista de favoritos
   List<Meal> _favoriteMeals = [];
 
+  //Funcion para agregar o quitar fav.
+  void _toggleFavorite(Meal meal){
+    final isExisting = _favoriteMeals.contains(meal);
+    setState(() {
+      if(isExisting){
+        _favoriteMeals.remove(meal);
+      } else {
+        _favoriteMeals.add(meal);
+      }
+    });
+  }
+
   //Lista de paginas
   late List<Map<String, dynamic>> _pages;
 
@@ -25,11 +37,17 @@ class _TabsScreenState extends State<TabsScreen> {
   void initState() {
     super.initState();
     _pages = [
-      {'page': const CategoriesScreen(), 'title': 'Categories'},
+      {'page': CategoriesScreen(
+        favoriteMeals: _favoriteMeals,
+        onToggleFavorite: _toggleFavorite,
+      ),
+      'title': 'Categories'},
+
       {'page': MealsScreen(
         categoryId: 'favorites',
         categoryTitle: 'Your Favorites',
         favoriteMeals: _favoriteMeals,
+        onToggleFavorite: _toggleFavorite,
       ),
       'title': 'Your Favorites'},
     ];
