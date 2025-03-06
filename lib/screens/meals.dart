@@ -35,7 +35,6 @@ class _MealsScreenState extends State<MealsScreen> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     final filteredMeals = dummyMeals.where((meal) {

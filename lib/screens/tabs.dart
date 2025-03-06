@@ -32,7 +32,7 @@ class _TabsScreenState extends State<TabsScreen> {
         favoriteMeals: _favoriteMeals,
       ),
       'title': 'Your Favorites'},
-  ];
+    ];
   }
 
   void _selectPage(int index) {
