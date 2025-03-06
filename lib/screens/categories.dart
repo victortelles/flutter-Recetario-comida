@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:tarea_10_recetario/screens/meals.dart';
 import 'package:tarea_10_recetario/widgets/category_grid_item.dart';
 import 'package:tarea_10_recetario/models/category.dart';
 import 'package:tarea_10_recetario/data/dummy_data.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
+
+  //Funcionalidad al seleccionar categoria
+  void _selectCategory(BuildContext context, String categoryId, String categoryTitle) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (ctx) => MealsScreen(
+          categoryId: categoryId,
+          categoryTitle: categoryTitle,
+          favoriteMeals: [],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,16 +35,17 @@ class CategoriesScreen extends StatelessWidget {
           mainAxisSpacing: 20,
         ),
 
-        //Mostrar categorias
+        //Mostrar categorías
         children: [
           // Itera sobre las categorías disponibles
           for (final category in availableCategories)
             CategoryGridItem(
               category: category,
-              onSelectCategory: () {
-                // Funcionadlidad para Navegar a la pantalla de detalles de la categoría
-
-              },
+              onSelectCategory: () => _selectCategory(
+                context,
+                category.id,
+                category.title,
+              ),
             ),
         ],
       ),
