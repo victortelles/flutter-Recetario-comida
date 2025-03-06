@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:tarea_10_recetario/models/meal.dart';
 import 'package:tarea_10_recetario/screens/meals.dart';
 import 'package:tarea_10_recetario/widgets/category_grid_item.dart';
 import 'package:tarea_10_recetario/models/category.dart';
 import 'package:tarea_10_recetario/data/dummy_data.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key});
+  final List<Meal> favoriteMeals;
+  final Function(Meal) onToggleFavorite;
+
+  const CategoriesScreen({
+    super.key,
+    required this.favoriteMeals,
+    required this.onToggleFavorite,
+    });
 
   //Funcionalidad al seleccionar categoria
   void _selectCategory(BuildContext context, String categoryId, String categoryTitle) {
@@ -14,7 +22,8 @@ class CategoriesScreen extends StatelessWidget {
         builder: (ctx) => MealsScreen(
           categoryId: categoryId,
           categoryTitle: categoryTitle,
-          favoriteMeals: [],
+          favoriteMeals: favoriteMeals,
+          onToggleFavorite: onToggleFavorite,
         ),
       ),
     );
