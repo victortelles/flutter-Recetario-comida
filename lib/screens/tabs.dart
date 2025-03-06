@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tarea_10_recetario/models/meal.dart';
 import 'package:tarea_10_recetario/screens/categories.dart';
 import 'package:tarea_10_recetario/screens/meals.dart';
 import 'package:tarea_10_recetario/widgets/main_drawer.dart';
@@ -14,11 +15,25 @@ class _TabsScreenState extends State<TabsScreen> {
   //Indice inicial pagina
   int _selectedPageIndex = 0;
 
-  //Lista de paginas del menu hamburgesa [Pagina + Texto]
-  final List<Map<String, dynamic>> _pages = [
-    {'page': const CategoriesScreen(), 'title': 'Categories'},
-    {'page': const MealsScreen(), 'title': 'Your Favorites'},
+  //Lista de favoritos
+  List<Meal> _favoriteMeals = [];
+
+  //Lista de paginas
+  late List<Map<String, dynamic>> _pages;
+
+  @override
+  void initState() {
+    super.initState();
+    _pages = [
+      {'page': const CategoriesScreen(), 'title': 'Categories'},
+      {'page': MealsScreen(
+        categoryId: 'favorites',
+        categoryTitle: 'Your Favorites',
+        favoriteMeals: _favoriteMeals,
+      ),
+      'title': 'Your Favorites'},
   ];
+  }
 
   void _selectPage(int index) {
     setState(() {
