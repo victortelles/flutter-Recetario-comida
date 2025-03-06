@@ -2,59 +2,48 @@ import 'package:flutter/material.dart';
 import 'package:tarea_10_recetario/data/dummy_data.dart';
 import 'package:tarea_10_recetario/models/meal.dart';
 import 'package:tarea_10_recetario/screens/meal_details.dart';
-import 'package:tarea_10_recetario/widgets/meal_item_trait.dart';
 import 'package:tarea_10_recetario/widgets/meal_item.dart';
 
-class MealsScreen extends StatefulWidget {
+class MealsScreen extends StatelessWidget {
   final String categoryId;
   final String categoryTitle;
   final List<Meal> favoriteMeals;
+  final Function(Meal) onToggleFavorite;
 
   const MealsScreen({
     super.key,
     required this.categoryId,
     required this.categoryTitle,
     required this.favoriteMeals,
+    required this.onToggleFavorite,
   });
 
-  @override
-  State<MealsScreen> createState() => _MealsScreenState();
-}
-
-class _MealsScreenState extends State<MealsScreen> {
-  List<Meal> favoriteMeals = [];
-
-  //Funcion para intercambiar el boton de favoito.
-  void _toggleFavorite(Meal meal) {
-    setState(() {
-      if(favoriteMeals.contains(meal)){
-        favoriteMeals.remove(meal);
-      } else {
-        favoriteMeals.add(meal);
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     final filteredMeals = dummyMeals.where((meal) {
-      return meal.categories.contains(widget.categoryId);
+      return meal.categories.contains(categoryId);
     }).toList();
 
     final mealsToShow =
-        widget.categoryId == 'favorites' ? widget.favoriteMeals : filteredMeals;
+        categoryId == 'favorites' ? favoriteMeals : filteredMeals;
 
+    //Esqueleto
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.categoryTitle),
+        title: Text(categoryTitle),
       ),
       body: mealsToShow.isEmpty
+
+          //Vacio
           ? const Center(
               child: Text(
                 'No hay platillos disponibles.',
                 style: TextStyle(fontSize: 24, color: Colors.amber),
               ),
             )
+
+          // Si no esta vacio
           : ListView.builder(
               itemCount: mealsToShow.length,
               itemBuilder: (ctx, index) {
@@ -66,7 +55,7 @@ class _MealsScreenState extends State<MealsScreen> {
                         builder: (ctx) => MealDetailsScreen(
                           meal: mealsToShow[index],
                           isFavorite: favoriteMeals.contains(mealsToShow[index]),
-                          onToggleFavorite: _toggleFavorite,
+                          onToggleFavorite: onToggleFavorite,
                         ),
                       ),
                     );
